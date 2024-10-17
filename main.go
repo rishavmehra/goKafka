@@ -33,8 +33,8 @@ func main() {
 	}
 	fmt.Printf("received message %v (%d)", buf[8:12], int32(binary.BigEndian.Uint32(buf[8:12])))
 	var version_error []byte
-	ver := binary.BigEndian.Uint16(buf[4:6])
-	// fmt.Printf("received message, %v, %v", ver, buf[4:8])
+	ver := binary.BigEndian.Uint16(buf[2:4]) // kafka api version(request_api_version)
+	// fmt.Printf("received message, %v, %v", ver, buf[2:4])
 	switch ver {
 	case 0, 1, 2, 3, 4:
 		version_error = []byte{0, 0}
